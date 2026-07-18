@@ -26,7 +26,7 @@ sudo apt update
 sudo apt install build-essential cmake qt6-base-dev qt6-base-private-dev qt6-tools-dev
 
 
-2. Projenin Klonlanması ve Derlenmesi
+### 2. Projenin Klonlanması ve Derlenmesi
 Depoyu bilgisayarınıza indirin ve CMake yardımıyla derleyin:
 
 Bash
@@ -42,7 +42,7 @@ cmake ..
 make
 
 
-3. Uygulamanın Çalıştırılması
+### 3. Uygulamanın Çalıştırılması
 Derleme tamamlandıktan sonra oluşan çalıştırılabilir dosyayı terminalden veya çift tıklayarak başlatabilirsiniz:
 
 Bash
