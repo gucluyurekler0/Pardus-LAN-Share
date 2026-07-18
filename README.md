@@ -24,3 +24,41 @@ Uygulamayı Pardus (veya Debian/Ubuntu tabanlı sistemler) üzerinde sıfırdan 
 ```bash
 sudo apt update
 sudo apt install build-essential cmake qt6-base-dev qt6-base-private-dev qt6-tools-dev
+
+
+2. Projenin Klonlanması ve Derlenmesi
+Depoyu bilgisayarınıza indirin ve CMake yardımıyla derleyin:
+
+Bash
+# Projeyi indirin
+git clone [https://github.com/gucluyurekler0/Pardus-LAN-Share.git](https://github.com/gucluyurekler0/Pardus-LAN-Share.git)
+cd Pardus-LAN-Share
+
+# Derleme klasörü oluşturun
+mkdir build && cd build
+
+# CMake ile projeyi yapılandırın ve derleyin
+cmake ..
+make
+
+
+3. Uygulamanın Çalıştırılması
+Derleme tamamlandıktan sonra oluşan çalıştırılabilir dosyayı terminalden veya çift tıklayarak başlatabilirsiniz:
+
+Bash
+./PardusLanShare
+📱 Kullanım Senaryosu
+Uygulamayı Pardus üzerinde başlattığınızda panelde yer alan Sunucu IP Adresi kısmındaki IP bilgisini (Örn: 192.168.1.50:9999) not edin.
+
+Aynı Wi-Fi ağına bağlı olan akıllı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
+
+Telefondan bir metin gönderdiğinizde, metin ortadaki düzenleme alanına düşer. Gerekli düzenlemeleri yapıp "Değişiklikleri Panoya Kopyala" diyerek CTRL+V ile dilediğiniz yere yapıştırabilirsiniz.
+
+Telefondan bir dosya (Resim, Video, PDF vb.) gönderdiğinizde, transfer biter bitmez sistem günlüğünün en üstünde mavi renkli bir bildirim satırı oluşur. Bu satıra fare ile çift tıklayarak dosyayı direkt açabilirsiniz.
+
+🛠️ Kullanılan Teknolojiler
+Dil: C++ (C++17 standardı)
+
+Arayüz & Çekirdek: Qt 6 (QtWidgets, QtNetwork)
+
+İnşa Sistemi: CMake
