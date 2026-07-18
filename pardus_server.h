@@ -8,7 +8,7 @@
 #include <QHash>
 #include <QAbstractSocket>
 
-// Her istemci (client) için ayrı durum yapısı
+
 struct ClientState {
     QByteArray buffer;
     bool receivingFile;
@@ -20,6 +20,7 @@ struct ClientState {
 
 class PardusServer : public QObject {
     Q_OBJECT
+
 public:
     explicit PardusServer(QObject *parent = nullptr);
     bool startServer(quint16 port = 9999);
@@ -48,4 +49,4 @@ private:
     QHash<QTcpSocket*, ClientState*> clients;
 };
 
-#endif // PARDUS_SERVER_H
+#endif

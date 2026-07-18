@@ -39,7 +39,6 @@ void PardusServer::onNewConnection() {
         connect(newClient, &QTcpSocket::readyRead, this, &PardusServer::onReadyRead);
         connect(newClient, &QTcpSocket::disconnected, this, &PardusServer::onClientDisconnected);
 
-        // KESİN ÇÖZÜM (Qt 6 Hatası): QOverload yerine doğrudan yeni errorOccurred sinyalini bağlıyoruz
         connect(newClient, &QTcpSocket::errorOccurred, this, &PardusServer::onSocketError);
 
         qDebug() << "Yeni istemci baglandi:" << newClient->peerAddress().toString();
@@ -54,68 +53,79 @@ void PardusServer::onSocketError(QAbstractSocket::SocketError socketError) {
 
 
 
+
 void PardusServer::onReadyRead() {
     QTcpSocket *senderSocket = qobject_cast<QTcpSocket*>(sender());
     if (!senderSocket || !clients.contains(senderSocket)) return;
 
     ClientState *state = clients[senderSocket];
 
-    // Gelen veriyi tampona (buffer) ekle
     QByteArray newData = senderSocket->readAll();
     state->buffer.append(newData);
 
-    // KURAL 1: Eğer zaten dosya transfer modundaysak, veriyi doğrudan dosyaya işle
     if (state->receivingFile) {
         processFileData(senderSocket);
         return;
     }
 
-    // HTTP Header sonunu ara
     int headerEnd = state->buffer.indexOf("\r\n\r\n");
-    if (headerEnd == -1) return; // Header henüz tamamlanmadıysa bir sonraki paketi bekle
+    if (headerEnd == -1) {
+        if (state->buffer.size() > 8192) {
+            qDebug() << "⚠️ Aşırı büyük HTTP başlığı reddedildi.";
+            state->buffer.clear();
+            senderSocket->disconnectFromHost();
+        }
+        return;
+    }
+
 
     QByteArray headerBytes = state->buffer.left(headerEnd);
     QString requestStr = QString::fromUtf8(headerBytes);
     QStringList lines = requestStr.split("\r\n");
 
-    // HTTP Başlığından Content-Length (Metin Boyutu) değerini ayıkla
     qint64 contentLength = 0;
     for (const QString &line : lines) {
         if (line.startsWith("Content-Length:", Qt::CaseInsensitive)) {
             contentLength = line.mid(15).trimmed().toLongLong();
+            break;
         }
     }
 
-    // Toplam beklenen paket boyutu = Header uzunluğu + 4 byte (\r\n\r\n) + Content-Length
-    qint64 totalExpectedSize = headerEnd + 4 + contentLength;
 
-    // EĞER verinin tamamı henüz gelmediyse, fonksiyonu durdur ve ağdan yeni paket gelmesini bekle!
-    if (state->buffer.size() < totalExpectedSize) {
-        return;
+
+    if (!requestStr.startsWith("POST /upload")) {
+        qint64 totalExpectedSize = headerEnd + 4 + contentLength;
+        if (state->buffer.size() < totalExpectedSize) {
+            return;
+        }
     }
 
-    // Buraya geldiysek artık metnin TAMAMI buffer içinde birikmiş demektir.
-    QByteArray bodyBytes = state->buffer.mid(headerEnd + 4, contentLength);
 
-    // === PANO PAYLAŞIMI (POST /share-clipboard) ===
-    if (requestStr.startsWith("POST /share-clipboard")) {
-        QString body = QString::fromUtf8(bodyBytes); // trimmed() kaldırıldı, kullanıcının kasıtlı boşlukları yutulmasın
-        if (!body.isEmpty()) {
-            updatePardusClipboard(body);
+    QString correctPin = this->property("pinCode").toString();
+    QString clientPin = "";
+
+    for (const QString &line : lines) {
+        if (line.startsWith("X-Pin-Code:", Qt::CaseInsensitive)) {
+            clientPin = line.mid(11).trimmed();
+            break;
         }
+    }
+
+    if (clientPin.isEmpty() || clientPin != correctPin) {
+        qDebug() << "❌ Yetkisiz Erişim Denemesi! Gelen PIN:" << clientPin << "Beklenen PIN:" << correctPin;
         state->buffer.clear();
-        sendHttpResponse(senderSocket, 200, "text/plain", "Basarili!", true);
+        sendHttpResponse(senderSocket, 401, "text/plain", "Unauthorized: Gecersiz veya Eski PIN!", true);
         return;
     }
 
-    // === DOSYA TRANSFERİ (POST /upload) ===
+
     if (requestStr.startsWith("POST /upload")) {
         QString filename;
         qint64 filesize = 0;
 
         for (const QString &line : lines) {
-            if (line.startsWith("X-Filename:")) filename = line.mid(11).trimmed();
-            if (line.startsWith("X-Filesize:")) filesize = line.mid(11).trimmed().toLongLong();
+            if (line.startsWith("X-Filename:", Qt::CaseInsensitive)) filename = line.mid(11).trimmed();
+            if (line.startsWith("X-Filesize:", Qt::CaseInsensitive)) filesize = line.mid(11).trimmed().toLongLong();
         }
 
         if (!filename.isEmpty() && filesize > 0) {
@@ -139,13 +149,12 @@ void PardusServer::onReadyRead() {
             state->currentFileReceived = 0;
             state->receivingFile = true;
 
-            // Buffer'ı sadece başlığı kesip, kalan gövde (body) verileriyle dosya moduna geçir
+
             state->buffer = state->buffer.mid(headerEnd + 4);
 
-            qDebug() << "Dosya transferi baslatiliyor:" << filename << "Toplam Boyut:" << filesize;
+            qDebug() << "🚀 Dosya transferi onaylandı:" << filename << "Boyut:" << filesize;
             emit fileTransferStarted(filename, filesize);
 
-            // İlk pakette kalan gövde verisini diske yazmak için tetikle
             processFileData(senderSocket);
             return;
         }
@@ -155,12 +164,27 @@ void PardusServer::onReadyRead() {
         return;
     }
 
-    // === SAĞLIK KONTROLÜ (GET /share-clipboard) ===
+
+    QByteArray bodyBytes = state->buffer.mid(headerEnd + 4, contentLength);
+
+
+    if (requestStr.startsWith("POST /share-clipboard")) {
+        QString body = QString::fromUtf8(bodyBytes);
+        if (!body.isEmpty()) {
+            updatePardusClipboard(body);
+        }
+        state->buffer.clear();
+        sendHttpResponse(senderSocket, 200, "text/plain", "Basarili!", true);
+        return;
+    }
+
+
     if (requestStr.startsWith("GET /share-clipboard")) {
         state->buffer.clear();
         sendHttpResponse(senderSocket, 200, "text/plain", "Pardus LAN Share Active", true);
         return;
     }
+
 
     state->buffer.clear();
     sendHttpResponse(senderSocket, 404, "text/plain", "Not Found", true);
@@ -172,13 +196,13 @@ void PardusServer::processFileData(QTcpSocket *socket) {
 
     if (!state->receivingFile || !state->currentFile || !state->currentFile->isOpen()) return;
 
-    // Buffer'da biriken ham TCP paket verisini dosyaya yaz
+
     if (!state->buffer.isEmpty()) {
         qint64 bytesWritten = state->currentFile->write(state->buffer);
         if (bytesWritten > 0) {
             state->currentFileReceived += bytesWritten;
         }
-        state->buffer.clear(); // Paket işlendi, buffer'ı boşalt
+        state->buffer.clear();
     }
 
     qint64 received = state->currentFileReceived;
@@ -189,7 +213,7 @@ void PardusServer::processFileData(QTcpSocket *socket) {
     int progress = (total > 0) ? static_cast<int>((received * 100) / total) : 0;
     qDebug() << "Dosya Aliniyor: %" << progress << " (" << received << "/" << total << ")";
 
-    // KESİN KONTROL: Eğer gelen veri hedeflenen boyuta ulaştıysa VEYA geçtüyse transferi bitir
+
     if (received >= total) {
         state->buffer.clear();
         finishFileTransfer(socket);
@@ -212,7 +236,7 @@ void PardusServer::finishFileTransfer(QTcpSocket *socket) {
     }
 
     state->currentFile = nullptr;
-    // DÜZELTME: Kapanma krizini önlemek için bayrağı erkenden indiriyoruz
+
     state->receivingFile = false;
 
     qDebug() << "========================================";
@@ -221,7 +245,7 @@ void PardusServer::finishFileTransfer(QTcpSocket *socket) {
 
     emit fileTransferCompleted(filepath);
 
-    // Yanıtı gönderip soketi güvenle sonlandırıyoruz
+
     sendHttpResponse(socket, 200, "text/plain", "SUCCESS", true);
 }
 
@@ -251,7 +275,6 @@ void PardusServer::sendHttpResponse(QTcpSocket *socket, int code, const QString 
     socket->flush();
 
     if (closeConnection) {
-        // DÜZELTME: Döngüsel çökmeleri engellemek için Lambda bağlantısını teke düşürüp güvenli hale getirdik.
         if (socket->bytesToWrite() == 0) {
             socket->disconnectFromHost();
         } else {
@@ -287,7 +310,6 @@ void PardusServer::onClientDisconnected() {
     if (clients.contains(senderSocket)) {
         ClientState *state = clients.take(senderSocket);
         if (state) {
-            // Sadece dosya transferi GERÇEKTEN yarım kaldıysa (finish çağrılmadıysa) sil
             if (state->receivingFile && state->currentFile) {
                 QString filepath = state->currentFile->fileName();
                 state->currentFile->close();
@@ -295,7 +317,6 @@ void PardusServer::onClientDisconnected() {
                 delete state->currentFile;
                 qDebug() << "Dosya transferi yarim kaldi (Istemci koptu), silindi:" << filepath;
             } else if (state->currentFile) {
-                // Her ihtimale karşı açık pointer kaldıysa temizle ama dosyayı silme
                 delete state->currentFile;
             }
             delete state;
@@ -305,6 +326,5 @@ void PardusServer::onClientDisconnected() {
 }
 
 QString PardusServer::getDownloadPath() const {
-    // Dosyaların kaydedileceği klasör: "İndirilenler/PardusLanShare" klasörüdür.
     return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/PardusLanShare";
 }

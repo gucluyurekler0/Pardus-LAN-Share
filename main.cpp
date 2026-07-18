@@ -15,27 +15,23 @@
 #include <QTime>
 #include <QNetworkInterface>
 #include <QFileInfo>
-#include <QDesktopServices> // Yeni eklenen kütüphane: Dosyayı açmak için
-#include <QUrl>             // Yeni eklenen kütüphane: Dosya yolunu URL'e çevirmek için
+#include <QDesktopServices>
+#include <QUrl>
+#include <QRandomGenerator>
 #include "pardus_server.h"
 #include "device_discovery.h"
 
-// Yerel Wi-Fi IP adresini arayüzde göstermek için yardımcı fonksiyon
 
-// Yerel gerçek IP adresini sanal kartları filtreleyerek bulan güncellenmiş fonksiyon
 QString getLocalWifiIp() {
     QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
 
-    // İlk aşama: Gerçekten internete bağlı, aktif ve sanal olmayan kartları ara
     for (const QNetworkInterface &iface : interfaces) {
-        // Kart aktif mi, çalışıyor mu ve loopback (yerel geri döngü) değil mi?
         if ((iface.flags() & QNetworkInterface::IsUp) &&
             (iface.flags() & QNetworkInterface::IsRunning) &&
             !(iface.flags() & QNetworkInterface::IsLoopBack)) {
 
             QString name = iface.humanReadableName().toLower();
 
-            // VirtualBox, VMware, WSL veya Sanal (vbox, vEthernet, vmnet) kartları DEĞİLSE içeri al
             if (!name.contains("virtual") && !name.contains("vbox") &&
                 !name.contains("vmware") && !name.contains("vethernet") &&
                 !name.contains("host-only")) {
@@ -44,7 +40,6 @@ QString getLocalWifiIp() {
                     if (entry.ip().protocol() == QAbstractSocket::IPv4Protocol) {
                         QString ipStr = entry.ip().toString();
 
-                        // Sanal makinelerin sık kullandığı 192.168.56.X bloğunu ve APIPA (169.254) adreslerini filtrele
                         if (!ipStr.startsWith("192.168.56.") && !ipStr.startsWith("169.254.")) {
                             return ipStr; // Gerçek IP bulundu!
                         }
@@ -73,17 +68,20 @@ QString getLocalWifiIp() {
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    // 1. Ana Pencere Tasarımı
+    int randomPin = QRandomGenerator::global()->bounded(100000, 1000000);
+    QString pinCode = QString::number(randomPin);
+
+
     QWidget mainWindow;
     mainWindow.setWindowTitle("Pardus LAN Share - Gelişmiş Sunucu Paneli");
-    mainWindow.resize(550, 600);
+    mainWindow.resize(550, 650); // Kod alanının sığması için dikey boyutu biraz artırdık
     mainWindow.setStyleSheet("background-color: #F8FAFC; font-family: 'Segoe UI', Arial, sans-serif;");
 
     QVBoxLayout *mainLayout = new QVBoxLayout(&mainWindow);
     mainLayout->setSpacing(12);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
-    // Başlık ve Durum Etiketleri
+
     QLabel *lblTitle = new QLabel("🖥️ Pardus LAN Share", &mainWindow);
     lblTitle->setStyleSheet("font-size: 18px; font-weight: bold; color: #1E293B;");
     mainLayout->addWidget(lblTitle);
@@ -93,12 +91,17 @@ int main(int argc, char *argv[]) {
     lblIp->setStyleSheet("font-size: 13px; color: #475569; background-color: #E2E8F0; padding: 8px; border-radius: 6px;");
     mainLayout->addWidget(lblIp);
 
-    // Canlı Transfer Durumu Takip Etiketi
+
+    QLabel *lblPin = new QLabel("🔑 Bağlantı Kodu (PIN): <span style='font-size: 16px; font-weight: bold; color: #EF4444;'>" + pinCode + "</span>", &mainWindow);
+    lblPin->setStyleSheet("font-size: 13px; color: #475569; background-color: #FEE2E2; border: 1px solid #FCA5A5; padding: 8px; border-radius: 6px;");
+    mainLayout->addWidget(lblPin);
+
+
     QLabel *lblStatus = new QLabel("⏳ Telefon bağlantısı bekleniyor...", &mainWindow);
     lblStatus->setStyleSheet("font-size: 12px; font-weight: bold; color: #64748B;");
     mainLayout->addWidget(lblStatus);
 
-    // İlerleme Çubuğu (Progress Bar)
+
     QProgressBar *progressBar = new QProgressBar(&mainWindow);
     progressBar->setRange(0, 100);
     progressBar->setValue(0);
@@ -109,7 +112,7 @@ int main(int argc, char *argv[]) {
         );
     mainLayout->addWidget(progressBar);
 
-    // Gelen Metin Editörü
+
     QLabel *lblEditTitle = new QLabel("📝 Gelen Pano İçeriği (Düzenlenebilir):", &mainWindow);
     lblEditTitle->setStyleSheet("font-size: 12px; font-weight: bold; color: #475569; margin-top: 5px;");
     mainLayout->addWidget(lblEditTitle);
@@ -122,7 +125,7 @@ int main(int argc, char *argv[]) {
         );
     mainLayout->addWidget(txtEditor);
 
-    // Editör Aksiyon Butonları
+
     QHBoxLayout *btnLayout = new QHBoxLayout();
     QPushButton *btnCopyToClipboard = new QPushButton("📋 Değişiklikleri Panoya Kopyala", &mainWindow);
     btnCopyToClipboard->setStyleSheet(
@@ -138,7 +141,7 @@ int main(int argc, char *argv[]) {
     btnLayout->addWidget(btnClearEditor);
     mainLayout->addLayout(btnLayout);
 
-    // Canlı Log/Geçmiş Listesi
+
     QLabel *lblLogTitle = new QLabel("📋 Sistem Günlükleri (En son yapılan en üsttedir. Dosyaya çift tıklayarak açabilirsiniz):", &mainWindow);
     lblLogTitle->setStyleSheet("font-size: 12px; font-weight: bold; color: #475569; margin-top: 5px;");
     mainLayout->addWidget(lblLogTitle);
@@ -149,11 +152,14 @@ int main(int argc, char *argv[]) {
         "QListWidget { background-color: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 6px; padding: 5px; font-size: 11px; color: #334155; }"
         "QListWidget::item:hover { background-color: #E2E8F0; border-radius: 4px; color: #1E293B; }"
         );
-    listLog->insertItem(0, "[" + QTime::currentTime().toString() + "] Sunucu başarıyla başlatıldı.");
+    listLog->insertItem(0, "[" + QTime::currentTime().toString() + "] Sunucu başarıyla başlatıldı. PIN: " + pinCode);
     mainLayout->addWidget(listLog);
 
-    // 2. Arka Plan Çekirdek Yapıları
     PardusServer server;
+
+
+    server.setProperty("pinCode", pinCode);
+
     if (!server.startServer(9999)) {
         listLog->insertItem(0, "❌ HATA: TCP Sunucu başlatılamadı!");
         mainWindow.show();
@@ -163,7 +169,7 @@ int main(int argc, char *argv[]) {
     DeviceDiscovery discovery;
     discovery.startDiscovery();
 
-    // 3. Buton Fonksiyonları (Slots)
+
     QObject::connect(btnCopyToClipboard, &QPushButton::clicked, [&]() {
         QString editedText = txtEditor->toPlainText();
         QGuiApplication::clipboard()->setText(editedText);
@@ -176,7 +182,7 @@ int main(int argc, char *argv[]) {
         lblStatus->setText("🗑️ Editör temizlendi.");
     });
 
-    // --- LİSTEDEN DOSYA AÇMA FONKSİYONU ---
+
     QObject::connect(listLog, &QListWidget::itemDoubleClicked, [&](QListWidgetItem *item) {
         QVariant data = item->data(Qt::UserRole);
         if (data.isValid()) {
@@ -185,7 +191,7 @@ int main(int argc, char *argv[]) {
         }
     });
 
-    // 4. Sinyal - Slot Mekanizması (Arayüz Bağlantıları)
+
     QObject::connect(&discovery, &DeviceDiscovery::deviceFound, [&](const DiscoveredDevice &device) {
         listLog->insertItem(0, "[" + QTime::currentTime().toString() + "] 📱 Cihaz Algılandı: " + device.name + " (" + device.ip + ")");
     });
@@ -207,7 +213,7 @@ int main(int argc, char *argv[]) {
         progressBar->setValue(progress);
     });
 
-    // DOSYA TRANSFERİ TAMAMLANDIĞINDA (EN ÜSTE EKLEYECEK ŞEKİLDE GÜNCELLENDİ)
+
     QObject::connect(&server, &PardusServer::fileTransferCompleted, [&](const QString &filepath) {
         progressBar->setValue(100);
         lblStatus->setText("✅ Dosya başarıyla kaydedildi!");
@@ -217,20 +223,13 @@ int main(int argc, char *argv[]) {
             "[" + QTime::currentTime().toString() + "] 💾 Dosya Kaydedildi (Açmak için çift tıkla): " + fileInfo.fileName()
             );
 
-        // Dosya yolunu veriye gömüyoruz
         newItem->setData(Qt::UserRole, filepath);
-
-        // Belirgin olması için mavi tonu rengini koruyoruz
         newItem->setForeground(QColor("#2563EB"));
-
-        // DÜZELTME: addItem yerine insertItem(0, ...) kullanarak listenin EN BAŞINA yerleştiriyoruz
         listLog->insertItem(0, newItem);
-
-        // Kullanıcının doğrudan tıklayabilmesi için yeni gelen bu elemanı otomatik olarak seçili hale getirebiliriz (isteğe bağlı)
         listLog->setCurrentItem(newItem);
     });
 
-    // 5. Sistem Tepsisi (Tray Icon) Entegrasyonu
+
     QSystemTrayIcon trayIcon;
     trayIcon.setIcon(app.style()->standardIcon(QStyle::SP_ComputerIcon));
     trayIcon.setToolTip("Pardus LAN Share");

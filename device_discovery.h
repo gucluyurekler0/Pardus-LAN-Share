@@ -51,4 +51,4 @@ private:
     QString getLocalIpAddress() const;
 };
 
-#endif // DEVICE_DISCOVERY_H
+#endif

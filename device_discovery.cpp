@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QUuid>
 
-// Her cihaz için sabit benzersiz ID
+
 static const QString DEVICE_ID = QUuid::createUuid().toString(QUuid::WithoutBraces);
 
 DeviceDiscovery::DeviceDiscovery(QObject *parent) : QObject(parent) {
@@ -65,10 +65,10 @@ void DeviceDiscovery::processDatagram(const QByteArray &data, const QHostAddress
 
     QJsonObject obj = doc.object();
 
-    // === KENDİNİ BULMA FİLTRESİ ===
+
     QString incomingDeviceId = obj["device_id"].toString();
     if (incomingDeviceId == DEVICE_ID) {
-        return; // Kendi yayınımızı ignore et
+        return;
     }
 
     QString messageType = obj["message"].toString();
@@ -81,7 +81,6 @@ void DeviceDiscovery::processDatagram(const QByteArray &data, const QHostAddress
     device.port = obj["port"].toInt();
     device.lastSeen = QDateTime::currentDateTime().toSecsSinceEpoch();
 
-    // IPv6 mapped IPv4 adreslerini düzelt (::ffff:192.168.x.x → 192.168.x.x)
     if (device.ip.startsWith("::ffff:")) {
         device.ip = device.ip.mid(7);
     }
@@ -123,7 +122,7 @@ QJsonObject DeviceDiscovery::createDiscoveryMessage() const {
     QJsonObject obj;
     obj["device_name"] = "Pardus-PC";
     obj["device_type"] = "desktop";
-    obj["ip_address"] = "192.168.1.141";  // Wi-Fi IP'n
+    obj["ip_address"] = "192.168.1.141";
     obj["port"] = 9999;
     obj["timestamp"] = QDateTime::currentDateTime().toSecsSinceEpoch();
     obj["message"] = "DISCOVER";
@@ -134,14 +133,14 @@ QString DeviceDiscovery::getLocalIpAddress() const {
     QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
 
     for (const QNetworkInterface &iface : interfaces) {
-        // Sadece aktif ve çalışan arayüzleri kontrol et
+
         if (iface.flags() & QNetworkInterface::IsUp &&
             iface.flags() & QNetworkInterface::IsRunning &&
             !(iface.flags() & QNetworkInterface::IsLoopBack)) {
 
             QString name = iface.humanReadableName().toLower();
 
-            // Sanal adaptörleri atla
+
             if (name.contains("virtual") ||
                 name.contains("vmware") ||
                 name.contains("vmnet") ||
@@ -153,7 +152,7 @@ QString DeviceDiscovery::getLocalIpAddress() const {
                 continue;
             }
 
-            // Sadece Wi-Fi ve Ethernet adaptörlerini kontrol et
+
             if (!name.contains("wi-fi") &&
                 !name.contains("wireless") &&
                 !name.contains("ethernet") &&
@@ -170,7 +169,7 @@ QString DeviceDiscovery::getLocalIpAddress() const {
 
                     QString ipStr = addr.toString();
 
-                    // Sadece 192.168.1.x ağını kullan (senin Wi-Fi ağın)
+
                     if (ipStr.startsWith("192.168.1.")) {
                         qDebug() << "Wi-Fi IP bulundu:" << ipStr << "Arayuz:" << name;
                         return ipStr;
@@ -180,7 +179,7 @@ QString DeviceDiscovery::getLocalIpAddress() const {
         }
     }
 
-    // Hiçbiri bulunamazsa manuel fallback
+
     qDebug() << "UYARI: Wi-Fi IP bulunamadi, manuel IP kullaniliyor!";
-    return "192.168.1.141"; // Senin gerçek IP'n
+    return "192.168.1.141";
 }
