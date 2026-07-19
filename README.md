@@ -4,6 +4,20 @@ Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile
 
 Bu proje sayesinde telefondan kopyalanan metinleri bilgisayarda anlık olarak düzenleyebilir, gönderilen dosyaları tek bir tıklamayla doğrudan açabilirsiniz.
 
+## 📱 Android İstemcisi
+
+Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan görüntüleyebilir ve paylaşabilirsiniz.
+
+👉 **Pardus LAN Share Mobile:**  
+https://github.com/gucluyurekler0/PardusLanShareMobile
+## 📷 Android Mobil Uygulama Ekran Görüntüleri
+
+<p align="center">
+  <img src="[screenshots/1.png](https://github.com/gucluyurekler0/PardusLanShareMobile/blob/main/screenshots/Screenshot_2026-07-19-07-33-15-58_4ebbdcdb072baa522dd1ba6c306860e3.jpg)" alt="Ana Ekran 1" width="300"/>
+
+  
+</p>
+
 ---
 
 # ✨ Özellikler
