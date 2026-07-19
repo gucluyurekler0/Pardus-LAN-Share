@@ -9,7 +9,7 @@ Bu proje sayesinde telefondan kopyalanan metinleri bilgisayarda anlık olarak d�
 Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan görüntüleyebilir ve paylaşabilirsiniz.
 
 👉 **Pardus LAN Share Mobile:**  
-Github : https://github.com/gucluyurekler0/PardusLanShareMobile
+Github : https://github.com/gucluyurekler0/PardusLanShareMobile <br>
 Uygulama Dosyası : [https://github.com/gucluyurekler0/PardusLanShareMobile](https://github.com/gucluyurekler0/PardusLanShareMobile/releases/download/v1.0.0/app-debug.apk)
 ## 📷 Android Mobil Uygulama Ekran Görüntüleri
 
