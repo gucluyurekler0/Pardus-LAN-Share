@@ -98,7 +98,6 @@ Type=Application
 Name=Pardus LAN Share
 Comment=Yerel ağ üzerinden dosya paylaşımı
 Exec=/home/$USER/Pardus-LAN-Share/build/PardusLanShare
-Icon=/home/$USER/Pardus-LAN-Share/icon.png
 Terminal=false
 Categories=Network;Utility;
 ```
