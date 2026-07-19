@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/PardusLanShare/">
+    <file alias="Main.qml">C:/Users/Safak/Documents/PardusLanShare/Main.qml</file>
+  </qresource>
+</RCC>
+

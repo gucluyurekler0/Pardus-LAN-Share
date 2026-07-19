@@ -1,0 +1,5 @@
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/PardusLanShare.dir
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/edit_cache.dir
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/PardusLanShare_autogen_timestamp_deps.dir
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/PardusLanShare_autogen.dir

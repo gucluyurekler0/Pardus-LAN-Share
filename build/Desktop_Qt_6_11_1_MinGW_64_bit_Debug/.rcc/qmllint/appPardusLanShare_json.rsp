@@ -1,0 +1,13 @@
+--bare
+-I
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug
+-I
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/PardusLanShare
+-I
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug
+-I
+C:/Qt/6.11.1/mingw_64/qml
+--resource
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qt/rcc/qmake_PardusLanShare.qrc
+--json
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/appPardusLanShare_qmllint.json

@@ -1,0 +1,13 @@
+-rootPath
+C:/Users/Safak/Documents/PardusLanShare
+-cmake-output
+-output-file
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qt/qml_imports/appPardusLanShare_build.cmake
+-importPath
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug
+-importPath
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/PardusLanShare
+-importPath
+C:/Qt/6.11.1/mingw_64/qml
+-qrcFiles
+C:/Users/Safak/Documents/PardusLanShare/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/.qt/rcc/qmake_PardusLanShare.qrc
