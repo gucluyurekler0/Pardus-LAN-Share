@@ -83,6 +83,37 @@ make
 
 ---
 
+## 5️⃣ Uygulama Kısayolu Oluşturma (İsteğe Bağlı)
+
+Uygulamayı Pardus uygulama menüsünden kolayca başlatabilmek için bir masaüstü kısayolu oluşturabilirsiniz.
+
+```bash
+nano ~/.local/share/applications/pardus-lan-share.desktop
+```
+
+Aşağıdaki içeriği dosyaya ekleyin (Exec ve Icon yollarını kendi derleme dizininize göre düzenleyin):
+
+```ini
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pardus LAN Share
+Comment=Yerel ağ üzerinden dosya paylaşımı
+Exec=/home/$USER/Pardus-LAN-Share/build/PardusLanShare
+Icon=/home/$USER/Pardus-LAN-Share/icon.png
+Terminal=false
+Categories=Network;Utility;
+```
+
+Dosyayı kaydedip kapattıktan sonra çalıştırma izni verin:
+
+```bash
+chmod +x ~/.local/share/applications/pardus-lan-share.desktop
+```
+
+
+
+
 # 📱 Kullanım
 
 1. Uygulamayı Pardus üzerinde çalıştırın.
