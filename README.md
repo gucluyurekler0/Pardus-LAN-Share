@@ -97,7 +97,7 @@ Version=1.0
 Type=Application
 Name=Pardus LAN Share
 Comment=Yerel ağ üzerinden dosya paylaşımı
-Exec=/home/$USER/Pardus-LAN-Share/build/PardusLanShare
+Exec=sh -c "$HOME/Pardus-LAN-Share/build/PardusLanShare"
 Terminal=false
 Categories=Network;Utility;
 ```
