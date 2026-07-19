@@ -92,7 +92,9 @@ make
 
 # 📸 Ekran Görüntüsü
 
-> Buraya uygulamanızın ekran görüntüsünü ekleyebilirsiniz.
+![Pardus LAN Share](https://raw.githubusercontent.com/gucluyurekler0/Pardus-LAN-Share/main/screenshots/1.png)
+
+![Pardus LAN Share](https://raw.githubusercontent.com/gucluyurekler0/Pardus-LAN-Share/main/screenshots/2.png)
 
 ---
 
