@@ -112,8 +112,10 @@ Dosyayı kaydedip kapattıktan sonra çalıştırma izni verin:
 ```bash
 chmod +x ~/.local/share/applications/pardus-lan-share.desktop
 ```
-
-
+Uygulama menüsünü yenile
+```bash
+update-desktop-database ~/.local/share/applications
+```
 
 
 # 📱 Kullanım
