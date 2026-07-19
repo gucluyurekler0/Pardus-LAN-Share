@@ -13,7 +13,7 @@ https://github.com/gucluyurekler0/PardusLanShareMobile
 ## 📷 Android Mobil Uygulama Ekran Görüntüleri
 
 <p align="center">
-  <img src="[screenshots/1.png](https://github.com/gucluyurekler0/PardusLanShareMobile/blob/main/screenshots/Screenshot_2026-07-19-07-33-15-58_4ebbdcdb072baa522dd1ba6c306860e3.jpg)" alt="Ana Ekran 1" width="300"/>
+  <img src="https://github.com/gucluyurekler0/PardusLanShareMobile/blob/main/screenshots/Screenshot_2026-07-19-07-33-15-58_4ebbdcdb072baa522dd1ba6c306860e3.jpg" alt="Ana Ekran 1" width="300"/>
 
   
 </p>
