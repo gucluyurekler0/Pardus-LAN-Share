@@ -86,8 +86,10 @@ make
 ## 5️⃣ Uygulama Kısayolu Oluşturma (İsteğe Bağlı)
 
 Uygulamayı Pardus uygulama menüsünden kolayca başlatabilmek için bir masaüstü kısayolu oluşturabilirsiniz.
-
 ```bash
+mkdir -p ~/.local/share/applications
+
+
 nano ~/.local/share/applications/pardus-lan-share.desktop
 ```
 
