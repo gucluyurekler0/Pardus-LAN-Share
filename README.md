@@ -96,7 +96,7 @@ Aşağıdaki içeriği dosyaya ekleyin (Exec ve Icon yollarını kendi derleme d
 Version=1.0
 Type=Application
 Name=Pardus LAN Share
-Comment=Yerel ağ üzerinden dosya paylaşımı
+Comment=Cep telefonundan yerel ag uzerinden dosya ve metin gönderimi
 Exec=sh -c "$HOME/Pardus-LAN-Share/build/PardusLanShare"
 Terminal=false
 Categories=Network;Utility;
