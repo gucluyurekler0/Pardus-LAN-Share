@@ -1,64 +1,101 @@
 # 🖥️ Pardus LAN Share (Gelişmiş Sunucu Paneli)
 
-Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile bilgisayarlar (özellikle Pardus işletim sistemi) arasında hızlı, güvenli ve kablosuz veri aktarımı sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır. 
+Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile bilgisayarlar (özellikle Pardus işletim sistemi) arasında hızlı, güvenli ve kablosuz veri aktarımı sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
 
 Bu proje sayesinde telefondan kopyalanan metinleri bilgisayarda anlık olarak düzenleyebilir, gönderilen dosyaları tek bir tıklamayla doğrudan açabilirsiniz.
 
-## ✨ Özellikler
+---
 
-*   **Gelişmiş Metin Editörü (`QTextEdit`):** Telefondan gelen pano (clipboard) içeriklerini kırpılmadan tam haliyle görebilir, üzerinde düzenleme yapabilir ve tek butonla bilgisayar panosuna güncelleyebilirsiniz.
-*   **Akıllı Dosya Yöneticisi:** Gelen dosyalar tamamlandığı an sistem günlüklerinin **en üstünde** belirir. Listeden dosyaya mouse ile **çift tıklayarak** işletim sisteminin varsayılan uygulamasıyla (Görüntüleyici, VLC, Belge Okuyucu vb.) anında açabilirsiniz.
-*   **Sanal Ağ Filtreleme:** IP çakışmalarını önlemek adına VirtualBox, VMware veya WSL gibi sanal ağ adaptörlerinin IP adreslerini (`192.168.56.x` vb.) otomatik olarak filtreler ve sadece gerçek yerel IP adresinizi gösterir.
-*   **Sistem Tepsisi (Tray Icon) Entegrasyonu:** Arka planda çalışırken ekranı kaplamaz, sistem çekmecesinden kolayca yönetilebilir.
-*   **Anlık İlerleme Çubuğu:** Dosya transfer durumunu ve yüzdesini canlı olarak takip etmenizi sağlar.
+# ✨ Özellikler
+
+- **Gelişmiş Metin Editörü (`QTextEdit`)**
+  - Telefondan gelen pano (clipboard) içeriklerini kırpılmadan tam haliyle görebilir, düzenleyebilir ve tek butonla bilgisayar panosuna aktarabilirsiniz.
+
+- **Akıllı Dosya Yöneticisi**
+  - Gelen dosyalar tamamlandığında sistem günlüklerinin en üstünde görünür.
+  - Dosyaya çift tıklayarak varsayılan uygulama ile açabilirsiniz.
+
+- **Sanal Ağ Filtreleme**
+  - VirtualBox, VMware ve WSL gibi sanal adaptörleri otomatik filtreler.
+  - Gerçek yerel IP adresini gösterir.
+
+- **Sistem Tepsisi (Tray Icon)**
+  - Arka planda çalışabilir.
+  - Sistem tepsisinden kolayca yönetilebilir.
+
+- **Anlık İlerleme Çubuğu**
+  - Dosya aktarım yüzdesini canlı olarak gösterir.
 
 ---
 
-## 🐧 Pardus İşletim Sisteminde Kurulum ve Derleme Kılavuzu
+# 🐧 Pardus İşletim Sisteminde Kurulum ve Derleme
 
-Uygulamayı Pardus (veya Debian/Ubuntu tabanlı sistemler) üzerinde sıfırdan derleyip çalıştırmak için aşağıdaki adımları takip edin:
-
-### 1. Gerekli Bağımlılıkların Kurulması
-Öncelikle sisteminizde C++ derleyicisinin, CMake mimarisinin ve Qt6 kütüphanelerinin kurulu olduğundan emin olun. Terminali açın ve şu komutu çalıştırın:
+## 1️⃣ Gerekli Bağımlılıkların Kurulması
 
 ```bash
 sudo apt update
 sudo apt install build-essential cmake qt6-base-dev qt6-base-private-dev qt6-tools-dev
+```
 
+---
 
-2. Projenin Klonlanması ve Derlenmesi
-Depoyu bilgisayarınıza indirin ve CMake yardımıyla derleyin:
+## 2️⃣ Projenin Klonlanması
 
-Bash
-# Projeyi indirin
-git clone [https://github.com/gucluyurekler0/Pardus-LAN-Share.git](https://github.com/gucluyurekler0/Pardus-LAN-Share.git)
+```bash
+git clone https://github.com/gucluyurekler0/Pardus-LAN-Share.git
 cd Pardus-LAN-Share
+```
 
-# Derleme klasörü oluşturun
-mkdir build && cd build
+---
 
-# CMake ile projeyi yapılandırın ve derleyin
+## 3️⃣ Derleme
+
+```bash
+mkdir -p build
+cd build
+
 cmake ..
 make
+```
 
+---
 
-3. Uygulamanın Çalıştırılması
-Derleme tamamlandıktan sonra oluşan çalıştırılabilir dosyayı terminalden veya çift tıklayarak başlatabilirsiniz:
+## 4️⃣ Uygulamayı Çalıştırma
 
-Bash
+```bash
 ./PardusLanShare
-📱 Kullanım Senaryosu
-Uygulamayı Pardus üzerinde başlattığınızda panelde yer alan Sunucu IP Adresi kısmındaki IP bilgisini (Örn: 192.168.1.50:9999) not edin.
+```
 
-Aynı Wi-Fi ağına bağlı olan akıllı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
+---
 
-Telefondan bir metin gönderdiğinizde, metin ortadaki düzenleme alanına düşer. Gerekli düzenlemeleri yapıp "Değişiklikleri Panoya Kopyala" diyerek CTRL+V ile dilediğiniz yere yapıştırabilirsiniz.
+# 📱 Kullanım
 
-Telefondan bir dosya (Resim, Video, PDF vb.) gönderdiğinizde, transfer biter bitmez sistem günlüğünün en üstünde mavi renkli bir bildirim satırı oluşur. Bu satıra fare ile çift tıklayarak dosyayı direkt açabilirsiniz.
+1. Uygulamayı Pardus üzerinde çalıştırın.
+2. **Sunucu IP Adresi** bölümünde görünen adresi not edin. (Örn: `192.168.1.50:9999`)
+3. Aynı Wi-Fi ağına bağlı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
+4. Metin gönderdiğinizde düzenleme alanında görüntülenir.
+5. **Değişiklikleri Panoya Kopyala** butonuyla bilgisayar panosuna aktarabilirsiniz.
+6. Dosya gönderildiğinde sistem günlüğünün en üstünde görünür.
+7. Dosyaya çift tıklayarak doğrudan açabilirsiniz.
 
-🛠️ Kullanılan Teknolojiler
-Dil: C++ (C++17 standardı)
+---
 
-Arayüz & Çekirdek: Qt 6 (QtWidgets, QtNetwork)
+# 🛠️ Kullanılan Teknolojiler
 
-İnşa Sistemi: CMake
+| Teknoloji | Açıklama |
+|-----------|----------|
+| **Dil** | C++17 |
+| **Arayüz** | Qt 6 (QtWidgets, QtNetwork) |
+| **Derleme Sistemi** | CMake |
+
+---
+
+# 📸 Ekran Görüntüsü
+
+> Buraya uygulamanızın ekran görüntüsünü ekleyebilirsiniz.
+
+---
+
+# 📄 Lisans
+
+Bu proje açık kaynak olarak geliştirilmektedir.
