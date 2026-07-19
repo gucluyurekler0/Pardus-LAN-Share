@@ -34,10 +34,6 @@ Uygulama Dosyası : [https://github.com/gucluyurekler0/PardusLanShareMobile](htt
   - VirtualBox, VMware ve WSL gibi sanal adaptörleri otomatik filtreler.
   - Gerçek yerel IP adresini gösterir.
 
-- **Sistem Tepsisi (Tray Icon)**
-  - Arka planda çalışabilir.
-  - Sistem tepsisinden kolayca yönetilebilir.
-
 - **Anlık İlerleme Çubuğu**
   - Dosya aktarım yüzdesini canlı olarak gösterir.
 
