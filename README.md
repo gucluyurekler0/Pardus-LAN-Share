@@ -9,9 +9,8 @@ Bu proje sayesinde telefondan gönderilen dosyaları bilgisayara gönderebilir, 
 Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
 Öncelikle  aşağıda yer alan apk uzantılı mobil uygulamayı Android işletim sisteminize kurmalısınız.
 Ardından Pardus işletim sisteminde terminal uygulamasını açıp aşağıda verilen komutları çalıştırarak kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
-
-.---------------------------------------------------------------------------------------------------------------------------------------------------------
-👉 **Pardus LAN Share Mobile:**  
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+ **Pardus LAN Share Mobile:**  
 Github : https://github.com/gucluyurekler0/PardusLanShareMobile <br>
 Uygulama Dosyası : [https://github.com/gucluyurekler0/PardusLanShareMobile](https://github.com/gucluyurekler0/PardusLanShareMobile/releases/download/v1.0.0/app-debug.apk)
 ## 📷 Android Mobil Uygulama Ekran Görüntüleri
