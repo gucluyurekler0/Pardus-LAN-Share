@@ -4,7 +4,7 @@ Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile
 
 ------
 Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
-Öncelikle  aşağıda yer alan apk uzantılı mobil uygulamayı Android işletim sisteminize kurmalısınız.
+Öncelikle  aşağıda yer alan apk uzantılı (https://github.com/gucluyurekler0/PardusLanShareMobile/releases/download/v1.0.0/app-debug.apk)  mobil uygulamayı Android işletim sisteminize kurmalısınız.
 Ardından Pardus işletim sisteminde terminal uygulamasını açıp aşağıda verilen komutları çalıştırarak kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
 ------
 
