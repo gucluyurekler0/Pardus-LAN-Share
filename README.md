@@ -2,13 +2,15 @@
 
 Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile bilgisayarlar (özellikle Pardus işletim sistemi) arasında hızlı, güvenli ve kablosuz veri aktarımı sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
 
-Bu proje sayesinde telefondan gönderilen dosyaları bilgisayara gönderebilir, tek bir tıklamayla doğrudan açabilir ve telefondan kopyalanan metinleri bilgisayarda anlık olarak düzenleyebilirsiniz.
-
-## 📱 Android İstemcisi
-
+------
 Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
 Öncelikle  aşağıda yer alan apk uzantılı mobil uygulamayı Android işletim sisteminize kurmalısınız.
 Ardından Pardus işletim sisteminde terminal uygulamasını açıp aşağıda verilen komutları çalıştırarak kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
+------
+
+## 📱 Android İstemcisi
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
  **Pardus LAN Share Mobile:**  
 Github : https://github.com/gucluyurekler0/PardusLanShareMobile <br>
