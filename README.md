@@ -2,7 +2,7 @@
 
 Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile bilgisayarlar (özellikle Pardus işletim sistemi) arasında hızlı, güvenli ve kablosuz veri aktarımı sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
 
-Ek olarak Proje kapsamında geliştirilen Mobil Uygulama ve Masaüstü uygulama sayesinde Milli Eğitim Bakanlığına bağlı Pardus işletim sistemi yüklü tüm tahtalara öğretmenlerin kolaylıkla cep telefonlarından akıllı tahtaya dosyalar ve metinler aktararak öğrencilere sunmaları hedeflenmektedir.
+Ek olarak proje kapsamında geliştirilen Mobil Uygulama ve Masaüstü uygulama sayesinde Milli Eğitim Bakanlığına bağlı Pardus işletim sistemi yüklü tüm tahtalara öğretmenlerin kolaylıkla cep telefonlarından akıllı tahtaya dosyalar ve metinler aktararak öğrencilere sunmaları hedeflenmektedir.
 
 ------
 Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
