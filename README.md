@@ -5,18 +5,24 @@ Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile
 Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamaları sayesinde Milli Eğitim Bakanlığına bağlı Pardus işletim sistemi yüklü tüm tahtalarda öğretmenlerin kolaylıkla cep telefonlarından akıllı tahtaya dosyalar ve metinleri aktararak öğrencilere sunmaları hedeflenmektedir.
 
 ------
-Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
-Öncelikle  aşağıda yer alan apk uzantılı (https://github.com/gucluyurekler0/PardusLanShareMobile/releases/download/v1.0.0/app-debug.apk)  mobil uygulamayı Android işletim sisteminize kurmalısınız.
-Ardından Pardus işletim sisteminde terminal uygulamasını açıp aşağıda verilen komutları çalıştırarak kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
+## Pardus LAN Share'in Android istemcisi ile aynı yerel ağ üzerindeki dosyaları mobil cihazınızdan PARDUS işetim sistemine güvenli olarak gönderebilirsiniz.
+## Öncelikle  PLAY STORE üzerinden (https://play.google.com/store/apps/details?id=com.gksyazilim.parduslansharemobile) Pardus LAN Share isimli mobil uygulamayı Android cihazınıza kurmalısınız
+
+## Mobil uygulamayı kurduktan sonra bu linkte yer alan deb paketini indirerek Pardus işletim sisteminize kurabilir ve cep tlefonunuz üzerinden aynı ağda yer alan pardus işetim sisteminize dosya transferini yapabilirsiniz.
+
+## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkg.deb
+
+
+
+## 2. yöntem olarak :Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
 ------
 
 ## 📱 Android İstemcisi
 
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
  **Pardus LAN Share Mobile:**  
 Github : https://github.com/gucluyurekler0/PardusLanShareMobile <br>
-Uygulama Dosyası : [https://github.com/gucluyurekler0/PardusLanShareMobile](https://github.com/gucluyurekler0/PardusLanShareMobile/releases/download/v1.0.0/app-debug.apk)
+Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazilim.parduslansharemobile)
 ## 📷 Android Mobil Uygulama Ekran Görüntüleri
 
 <p align="center">
