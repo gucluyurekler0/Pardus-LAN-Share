@@ -1,6 +1,6 @@
 # 🖥️ Pardus LAN Share (Gelişmiş Sunucu Paneli)
 
-Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ile bilgisayarlar (özellikle Pardus işletim sistemi) arasında hızlı, güvenli ve kablosuz veri aktarımı sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
+## Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ve bilgisayarlar arasında, özellikle Pardus ve Windows işletim sistemlerinde, küçük ve büyük boyutlu dosyaların hızlı, güvenli ve kablosuz olarak aktarılmasını sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
 
 Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamaları sayesinde Milli Eğitim Bakanlığına bağlı Pardus işletim sistemi yüklü tüm tahtalarda öğretmenlerin kolaylıkla cep telefonlarından akıllı tahtaya dosyalar ve metinleri aktararak öğrencilere sunmaları hedeflenmektedir.
 
@@ -12,9 +12,9 @@ Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamala
 
 ## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkg.deb
 
+## Windows İşletim Sistemi İçin Kurulum dosyası : https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/mysetup.exe
 
-
-## 2. yöntem olarak :Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
+## Pardus Kurulumu için 2. yöntem olarak :Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
 ------
 
 ## 📱 Android İstemcisi
