@@ -81,7 +81,7 @@ Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazili
 
 # 📸 Ekran Görüntüsü
 
-![Pardus LAN Share](https://raw.githubusercontent.com/gucluyurekler0/Pardus-LAN-Share/main/screenshots/scr1.jpg)
+
 
 ![Pardus LAN Share](https://raw.githubusercontent.com/gucluyurekler0/Pardus-LAN-Share/main/screenshots/scr2.jpg)
 
