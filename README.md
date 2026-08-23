@@ -29,7 +29,7 @@ Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazili
 ## 📷 Android Mobil Uygulama Ekran Görüntüleri
 
 <p align="center">
-  <img src="https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/screenshots/pardus1.jpeg" alt="Ana Ekran 1" width="300"/>
+  <img src="https://raw.githubusercontent.com/gucluyurekler0/Pardus-LAN-Share/main/screenshots/scr1.jpg" alt="Ana Ekran 1" width="300"/>
 
   
 </p>
