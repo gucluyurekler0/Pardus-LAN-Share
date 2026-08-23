@@ -40,7 +40,7 @@ Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazili
 # 📱 Kullanım
 
 1. Uygulamayı Pardus üzerinde çalıştırın.
-2. **Sunucu IP Adresi** bölümünde görünen QR kodu mobil uygulama üzerinden taratın veya ekranda görüne IP  ve parolayı uygulamaya giriniz. (Örn: `192.168.1.50:9999`)
+2. **Sunucu IP Adresi** bölümünde görünen QR kodu mobil uygulama üzerinden taratın veya ekranda görüne IP numarası ve parola ile uygulamaya giriniz. (Örn: `192.168.1.50`)
 3. Aynı Wi-Fi ağına bağlı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
 4. Metin gönderdiğinizde düzenleme alanında görüntülenir.
 5. **Değişiklikleri Panoya Kopyala** butonuyla bilgisayar panosuna aktarabilirsiniz.
