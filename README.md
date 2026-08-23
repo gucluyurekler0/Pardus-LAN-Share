@@ -10,11 +10,10 @@ Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamala
 
 ## Mobil uygulamayı kurduktan sonra bu linkte yer alan deb paketini indirerek Pardus işletim sisteminize kurabilir ve cep tlefonunuz üzerinden aynı ağda yer alan pardus işetim sisteminize dosya transferini yapabilirsiniz.
 
-## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkg.deb
+## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkgv2.deb
 
 ## Windows İşletim Sistemi İçin Kurulum dosyası : https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/PardusLanShare_Setup.exe
 
-## Pardus Kurulumu için 2. yöntem olarak : Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
 ------
 
 ## 📱 Android İstemcisi
@@ -33,6 +32,22 @@ Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazili
 
 ---
 
+---
+
+# 📱 Kullanım
+
+1. Uygulamayı Pardus üzerinde çalıştırın.
+2. **Sunucu IP Adresi** bölümünde görünen QR kodu mobil uygulama üzerinden taratın veya ekranda görüne IP  ve parolayı uygulamaya giriniz. (Örn: `192.168.1.50:9999`)
+3. Aynı Wi-Fi ağına bağlı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
+4. Metin gönderdiğinizde düzenleme alanında görüntülenir.
+5. **Değişiklikleri Panoya Kopyala** butonuyla bilgisayar panosuna aktarabilirsiniz.
+6. Dosya gönderildiğinde sistem günlüğünün en üstünde görünür.
+7. Dosyaya çift tıklayarak doğrudan açabilirsiniz.
+8. Dosyalarınız İndirilenler dizini altında PardusLanShare dizini altında kaydedilmektedir.
+
+---
+
+
 # ✨ Özellikler
 
 - **Gelişmiş Metin Editörü (`QTextEdit`)**
@@ -49,94 +64,7 @@ Uygulama Dosyası : (https://play.google.com/store/apps/details?id=com.gksyazili
 - **Anlık İlerleme Çubuğu**
   - Dosya aktarım yüzdesini canlı olarak gösterir.
 
----
 
-# 🐧 Pardus İşletim Sisteminde Kurulum ve Derleme
-
-## 1️⃣ Gerekli Bağımlılıkların Kurulması
-
-```bash
-sudo apt update
-sudo apt install build-essential cmake qt6-base-dev qt6-base-private-dev qt6-tools-dev
-```
-
----
-
-## 2️⃣ Projenin Klonlanması
-
-```bash
-git clone https://github.com/gucluyurekler0/Pardus-LAN-Share.git
-cd Pardus-LAN-Share
-```
-
----
-
-## 3️⃣ Derleme
-
-```bash
-mkdir -p build
-cd build
-
-cmake ..
-make
-```
-
----
-
-## 4️⃣ Uygulamayı Çalıştırma
-
-```bash
-./PardusLanShare
-```
-
----
-
-## 5️⃣ Uygulama Kısayolu Oluşturma (İsteğe Bağlı)
-
-Uygulamayı Pardus uygulama menüsünden kolayca başlatabilmek için bir masaüstü kısayolu oluşturabilirsiniz.
-```bash
-mkdir -p ~/.local/share/applications
-
-
-nano ~/.local/share/applications/pardus-lan-share.desktop
-```
-
-Aşağıdaki içeriği dosyaya ekleyin (Exec ve Icon yollarını kendi derleme dizininize göre düzenleyin):
-
-```ini
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Pardus LAN Share
-Comment=Cep telefonundan yerel ag uzerinden dosya ve metin gönderimi
-Exec=sh -c "$HOME/Pardus-LAN-Share/build/PardusLanShare"
-Terminal=false
-Categories=Network;Utility;
-```
-
-Dosyayı kaydedip kapattıktan sonra çalıştırma izni verin:
-
-```bash
-chmod +x ~/.local/share/applications/pardus-lan-share.desktop
-```
-Uygulama menüsünü yenile
-```bash
-update-desktop-database ~/.local/share/applications
-```
-
-
-# 📱 Kullanım
-
-1. Uygulamayı Pardus üzerinde çalıştırın.
-2. **Sunucu IP Adresi** bölümünde görünen adresi not edin. (Örn: `192.168.1.50:9999`)
-3. Aynı Wi-Fi ağına bağlı telefonunuzdaki istemci uygulamasından bu IP adresine bağlanın.
-4. Metin gönderdiğinizde düzenleme alanında görüntülenir.
-5. **Değişiklikleri Panoya Kopyala** butonuyla bilgisayar panosuna aktarabilirsiniz.
-6. Dosya gönderildiğinde sistem günlüğünün en üstünde görünür.
-7. Dosyaya çift tıklayarak doğrudan açabilirsiniz.
-8. Dosyalarınız İndirilenler dizini altında PardusLanShare dizini altında kaydedilmektedir.
-
----
 
 # 🛠️ Kullanılan Teknolojiler
 
