@@ -1,4 +1,4 @@
-# 🖥️ Pardus LAN Share (Veri Gönderim Aracı)
+# 🖥️ Pardus LAN Share (Veri Aktarım Aracı)
 
 ## Pardus LAN Share, yerel ağ (Wi-Fi/Ethernet) üzerindeki akıllı telefonlar ve bilgisayarlar arasında, özellikle Pardus ve Windows işletim sistemlerinde, küçük ve büyük boyutlu dosyaların hızlı, güvenli ve kablosuz olarak aktarılmasını sağlayan Qt tabanlı bir masaüstü sunucu uygulamasıdır.
 
