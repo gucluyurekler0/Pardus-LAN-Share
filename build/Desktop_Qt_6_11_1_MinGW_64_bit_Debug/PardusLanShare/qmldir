@@ -1,5 +1,0 @@
-module PardusLanShare
-typeinfo appPardusLanShare.qmltypes
-prefer :/qt/qml/PardusLanShare/
-depends QtQuick
-
