@@ -10,9 +10,13 @@ Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamala
 
 ## Mobil uygulamayı kurduktan sonra bu linkte yer alan deb paketini indirerek Pardus işletim sisteminize kurabilir ve cep tlefonunuz üzerinden aynı ağda yer alan pardus işetim sisteminize dosya transferini yapabilirsiniz.
 
-## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkgv2.deb
+### 📥 Uygulama İndirme Linkleri
 
-## Windows İşletim Sistemi İçin Kurulum dosyası : https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/PardusLanShare_Setup.exe
+* 🐧 **Pardus / Linux İşletim Sistemi İçin (.deb):**  
+  [🔗 Pardus LAN Share İndir](http://www.gksyazilim.org/debs/pardus-lan-share-pkgv2.deb)
+
+* 🪟 **Windows İşletim Sistemi İçin Kurulum Dosyası (Setup):**  
+  [🔗 Pardus LAN Share Windows Kurulumu İndir](https://github.com/gucluyurekler0/Pardus-LAN-Share/raw/main/PardusLanShare_Setup.exe)
 
 ------
 
