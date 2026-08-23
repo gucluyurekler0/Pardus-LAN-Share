@@ -11,12 +11,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(PardusLanShare
+add_executable(PardusLanShare WIN32
     main.cpp
-    pardus_server.cpp
-    pardus_server.h
-    device_discovery.cpp
-    device_discovery.h
+    pardus_server.h pardus_server.cpp
+    device_discovery.h device_discovery.cpp
+    resources.qrc
+    app.rc
 )
 
 target_link_libraries(PardusLanShare PRIVATE
