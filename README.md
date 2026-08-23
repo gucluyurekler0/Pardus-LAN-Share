@@ -12,9 +12,9 @@ Ek olarak proje kapsamında geliştirilen mobil uygulama ve msaüstü uygulamala
 
 ## Uygulama indirme Linki  : http://www.gksyazilim.org/debs/pardus-lan-share-pkg.deb
 
-## Windows İşletim Sistemi İçin Kurulum dosyası : https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/mysetup.exe
+## Windows İşletim Sistemi İçin Kurulum dosyası : https://github.com/gucluyurekler0/Pardus-LAN-Share/blob/main/PardusLanShare_Setup.exe
 
-## Pardus Kurulumu için 2. yöntem olarak :Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
+## Pardus Kurulumu için 2. yöntem olarak : Aşağıda verilen komutları ile masaüstü uygulamasının kurulumu tamamlayarak dosya ve metin transferini gerçekleştirebilirsiniz.
 ------
 
 ## 📱 Android İstemcisi
